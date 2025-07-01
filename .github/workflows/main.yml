@@ -1,1 +1,57 @@
-# 
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Package IaaC
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Compress IaaC folder
+        run: |
+          zip -r IaaC.zip IaaC
+
+      - name: Upload IaaC artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: IaaC
+          path: IaaC.zip
+
+  deploy_to_dev:
+    if: github.ref == 'refs/heads/main'
+    name: Deploy to Development
+    runs-on: ubuntu-latest
+    environment: development
+    needs: build
+    steps:
+      - name: Download IaaC artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: IaaC
+
+      - name: Extract IaaC artifact
+        run: |
+          unzip IaaC.zip
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy Azure Resources Bicep
+        run: |
+          az deployment group create \
+            --resource-group ${{ vars.RESOURCE_GROUP_NAME }} \
+            --template-file IaaC/Azure-Resources.bicep \
+            --parameters tenant="${{ vars.TENANT }}" location="${{ vars.LOCATION }}" \
+            --name AuthSvr-Portal-${{ github.run_number }}-${{ github.run_attempt }}
+
