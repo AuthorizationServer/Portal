@@ -53,5 +53,6 @@ jobs:
             --resource-group ${{ vars.RESOURCE_GROUP_NAME }} \
             --template-file IaaC/Azure-Resources.bicep \
             --parameters tenant="${{ vars.TENANT }}" location="${{ vars.LOCATION }}" \
+            --debug \
             --name AuthSvr-Portal-${{ github.run_number }}-${{ github.run_attempt }}
 
