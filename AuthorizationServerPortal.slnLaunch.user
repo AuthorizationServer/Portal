@@ -3,11 +3,11 @@
     "Name": "New Profile",
     "Projects": [
       {
-        "Path": "authorizationserverportal.client\\authorizationserverportal.client.esproj",
+        "Path": "Client\\Client.esproj",
         "Action": "Start"
       },
       {
-        "Path": "AuthorizationServerPortal.Server\\AuthorizationServerPortal.Server.csproj",
+        "Path": "WebServer\\WebServer.csproj",
         "Action": "Start"
       }
     ]

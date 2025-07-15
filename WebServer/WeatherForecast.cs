@@ -1,4 +1,4 @@
-namespace AuthorizationServerPortal.Server
+namespace AuthorizationServer.WebServer
 {
     public class WeatherForecast
     {

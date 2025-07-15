@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace AuthorizationServerPortal.Server.Controllers
+namespace AuthorizationServer.WebServer.Controllers
 {
     [ApiController]
     [Route("[controller]")]
