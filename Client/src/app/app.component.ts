@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from './app.config.service';
+import { MonitoringService } from './app.monitoring.service';
+import { config } from 'rxjs';
 
 interface WeatherForecast {
   date: string;
@@ -17,22 +20,16 @@ interface WeatherForecast {
 export class AppComponent implements OnInit {
   public forecasts: WeatherForecast[] = [];
 
-  constructor(private http: HttpClient) {}
-
-  ngOnInit() {
-    this.getForecasts();
+  constructor(
+    private http: HttpClient,
+    private configService: ConfigService,
+    private monitoringService: MonitoringService
+  ) {
   }
 
-  getForecasts() {
-    this.http.get<WeatherForecast[]>('/weatherforecast').subscribe(
-      (result) => {
-        this.forecasts = result;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+  async ngOnInit() {
   }
+
 
   title = 'Client';
 }

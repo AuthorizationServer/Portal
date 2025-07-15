@@ -7,6 +7,8 @@
     <SpaRoot>..\client</SpaRoot>
     <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:59791</SpaProxyServerUrl>
+    <AssemblyName>AuthorizationServer.WebServer</AssemblyName>
+    <RootNamespace>AuthorizationServer.WebServer</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

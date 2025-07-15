@@ -1,4 +1,12 @@
+using AuthorizationServer.WebServer.Models;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Add environment variables to the configuration.
+builder.Configuration.AddEnvironmentVariables();
+
+// Configure AppConfig from Configuration.
+builder.Services.Configure<Config>(builder.Configuration.GetSection("AppConfig"));
 
 // Add services to the container.
 
