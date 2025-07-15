@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "authorizationserverportal.client\\authorizationserverportal.client.esproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "AuthorizationServerPortal.Server\\AuthorizationServerPortal.Server.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
