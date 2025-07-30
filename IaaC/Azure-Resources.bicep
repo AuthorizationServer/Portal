@@ -20,3 +20,22 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
   }
   kind: 'linux'
 }
+
+resource angularAspNetCoreApp 'Microsoft.Web/sites@2022-03-01' = {
+  name: getFullResourceName(application.applicationName, application.tenant, 'AngularAspNetCoreApp', 'Microsoft.Web/sites', application.location.name)
+  location: application.location.name
+  tags: application.tags
+  kind: 'app,linux'
+  properties: {
+    serverFarmId: appServicePlan.id
+    siteConfig: {
+      linuxFxVersion: 'DOTNETCORE|9.0' // Specify the .NET Core runtime version
+      appSettings: [
+        {
+          name: 'WEBSITE_RUN_FROM_PACKAGE'
+          value: '1'
+        }
+      ]
+    }
+  }
+}
