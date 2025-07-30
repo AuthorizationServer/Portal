@@ -27,7 +27,7 @@ jobs:
           path: IaaC.zip
 
   deploy_to_dev:
-    if: github.ref == 'refs/heads/main'
+    #if: github.ref == 'refs/heads/main'
     name: Deploy to Development
     runs-on: ubuntu-latest
     environment: development
